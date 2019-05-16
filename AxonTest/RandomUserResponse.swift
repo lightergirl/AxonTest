@@ -9,91 +9,140 @@
 import Foundation
 
 struct RandomUserResponse: Codable {
-    let results: [Result]?
-    let info: Info?
+    let results: [Result]
+    let info: Info
 }
 
 struct Info: Codable {
-    let seed: String?
-    let results: Int?
-    let page: Int?
-    let version: String?
+    let seed: String
+    let results: Int
+    let page: Int
+    let version: String
 }
 
 struct Result: Codable {
-    let gender: String?
-    let name: Name?
-    let location: Location?
-    let email: String?
-    let login: Login?
-    let dob, registered: Dob?
-    let phone, cell: String?
-    let id: ID?
-    let picture: Picture?
-    let nat: String?
+    let gender: Gender
+    let name: Name
+    let location: Location
+    let email: String
+    let login: Login
+    let dob: Dob
+    let registered: Dob
+    let phone: String
+    let cell: String
+    let id: ID
+    let picture: Picture
+    let nat: String
+}
+
+enum Gender: String, Codable {
+    case female = "female"
+    case male = "male"
 }
 
 struct Dob: Codable {
-    let date: Date?
-    let age: Int?
+    let date: Date
+    let age: Int
 }
 
 struct ID: Codable {
-    let name: String?
+    let name: String
     let value: String?
 }
 
 struct Location: Codable {
-    let street, city, state: String?
-    let postcode: Int?
-    let coordinates: Coordinates?
-    let timezone: Timezone?
+    let street: String
+    let city: String
+    let state: String
+    let postcode: Postcode
+    let coordinates: Coordinates
+    let timezone: Timezone
 }
 
 struct Coordinates: Codable {
-    let latitude, longitude: String?
+    let latitude: String
+    let longitude: String
 }
 
 struct Timezone: Codable {
-    let offset, description: String?
+    let offset: String
+    let description: String
 }
 
 struct Login: Codable {
-    let uuid, username, password, salt: String?
-    let md5, sha1, sha256: String?
+    let uuid: String
+    let username: String
+    let password: String
+    let salt: String
+    let md5: String
+    let sha1: String
+    let sha256: String
 }
 
 struct Name: Codable {
-    let title, first, last: String?
+    let title: String
+    let first: String
+    let last: String
 }
 
 struct Picture: Codable {
-    let large, medium, thumbnail: String?
+    let large: String
+    let medium: String
+    let thumbnail: String
 }
 
-// MARK: Encode/decode helpers
-
-class JSONNull: Codable, Hashable {
+enum ResponseEnum: Codable {
+    case error(String)
+    case data(RandomUserResponse)
     
-    public static func == (lhs: JSONNull, rhs: JSONNull) -> Bool {
-        return true
-    }
-    
-    public var hashValue: Int {
-        return 0
-    }
-    
-    public init() {}
-    
-    public required init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if !container.decodeNil() {
-            throw DecodingError.typeMismatch(JSONNull.self, DecodingError.Context(codingPath: decoder.codingPath, debugDescription: "Wrong type for JSONNull"))
+        if let x = try? container.decode(String.self) {
+            self = .error(x)
+            return
+        }
+        if let x = try? container.decode(RandomUserResponse.self) {
+            self = .data(x)
+            return
+        }
+        throw DecodingError.typeMismatch(ResponseEnum.self, DecodingError.Context(codingPath: decoder.codingPath, debugDescription: "Wrong type for Response"))
+    }
+    
+    func encode(to encoder: Encoder) throws {
+        var container = encoder.singleValueContainer()
+        switch self {
+        case .error(let x):
+            try container.encode(x)
+        case .data(let x):
+            try container.encode(x)
         }
     }
+}
+
+enum Postcode: Codable {
+    case integer(Int)
+    case string(String)
     
-    public func encode(to encoder: Encoder) throws {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.singleValueContainer()
+        if let x = try? container.decode(Int.self) {
+            self = .integer(x)
+            return
+        }
+        if let x = try? container.decode(String.self) {
+            self = .string(x)
+            return
+        }
+        throw DecodingError.typeMismatch(Postcode.self, DecodingError.Context(codingPath: decoder.codingPath, debugDescription: "Wrong type for Postcode"))
+    }
+    
+    func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
-        try container.encodeNil()
+        switch self {
+        case .integer(let x):
+            try container.encode(x)
+        case .string(let x):
+            try container.encode(x)
+        }
     }
 }

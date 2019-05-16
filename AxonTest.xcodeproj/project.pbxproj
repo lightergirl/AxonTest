@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		349C33F1228DFB0B00B2F3B1 /* Notification+Name.swift in Sources */ = {isa = PBXBuildFile; fileRef = 349C33F0228DFB0B00B2F3B1 /* Notification+Name.swift */; };
+		349C33F3228DFEE400B2F3B1 /* UIImageView+Download.swift in Sources */ = {isa = PBXBuildFile; fileRef = 349C33F2228DFEE400B2F3B1 /* UIImageView+Download.swift */; };
+		349C33F5228E01D300B2F3B1 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 349C33F4228E01D300B2F3B1 /* DetailViewController.swift */; };
+		349C33F9228E035300B2F3B1 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 349C33F8228E035300B2F3B1 /* User.swift */; };
+		349C33FB228E05FB00B2F3B1 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 349C33FA228E05FB00B2F3B1 /* DetailView.swift */; };
 		34FF5E35228C859A00844296 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34FF5E34228C859A00844296 /* AppDelegate.swift */; };
 		34FF5E37228C859A00844296 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34FF5E36228C859A00844296 /* ViewController.swift */; };
 		34FF5E3A228C859A00844296 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 34FF5E38228C859A00844296 /* Main.storyboard */; };
@@ -14,11 +19,15 @@
 		34FF5E3F228C859D00844296 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 34FF5E3D228C859D00844296 /* LaunchScreen.storyboard */; };
 		34FF5E47228C892000844296 /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34FF5E46228C892000844296 /* APIManager.swift */; };
 		34FF5E49228C8E4500844296 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34FF5E48228C8E4500844296 /* TableViewCell.swift */; };
-		34FF5E4B228C8EC300844296 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34FF5E4A228C8EC300844296 /* User.swift */; };
 		34FF5E4D228C94AF00844296 /* RandomUserResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34FF5E4C228C94AF00844296 /* RandomUserResponse.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		349C33F0228DFB0B00B2F3B1 /* Notification+Name.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification+Name.swift"; sourceTree = "<group>"; };
+		349C33F2228DFEE400B2F3B1 /* UIImageView+Download.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Download.swift"; sourceTree = "<group>"; };
+		349C33F4228E01D300B2F3B1 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		349C33F8228E035300B2F3B1 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		349C33FA228E05FB00B2F3B1 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
 		34FF5E31228C859900844296 /* AxonTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AxonTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		34FF5E34228C859A00844296 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		34FF5E36228C859A00844296 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -28,7 +37,6 @@
 		34FF5E40228C859E00844296 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		34FF5E46228C892000844296 /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
 		34FF5E48228C8E4500844296 /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
-		34FF5E4A228C8EC300844296 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		34FF5E4C228C94AF00844296 /* RandomUserResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomUserResponse.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -64,11 +72,15 @@
 			children = (
 				34FF5E34228C859A00844296 /* AppDelegate.swift */,
 				34FF5E36228C859A00844296 /* ViewController.swift */,
+				349C33F4228E01D300B2F3B1 /* DetailViewController.swift */,
 				34FF5E46228C892000844296 /* APIManager.swift */,
 				34FF5E48228C8E4500844296 /* TableViewCell.swift */,
-				34FF5E4A228C8EC300844296 /* User.swift */,
+				349C33FA228E05FB00B2F3B1 /* DetailView.swift */,
+				349C33F8228E035300B2F3B1 /* User.swift */,
 				34FF5E38228C859A00844296 /* Main.storyboard */,
 				34FF5E4C228C94AF00844296 /* RandomUserResponse.swift */,
+				349C33F0228DFB0B00B2F3B1 /* Notification+Name.swift */,
+				349C33F2228DFEE400B2F3B1 /* UIImageView+Download.swift */,
 				34FF5E3B228C859D00844296 /* Assets.xcassets */,
 				34FF5E3D228C859D00844296 /* LaunchScreen.storyboard */,
 				34FF5E40228C859E00844296 /* Info.plist */,
@@ -147,12 +159,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				349C33F5228E01D300B2F3B1 /* DetailViewController.swift in Sources */,
 				34FF5E4D228C94AF00844296 /* RandomUserResponse.swift in Sources */,
 				34FF5E47228C892000844296 /* APIManager.swift in Sources */,
+				349C33FB228E05FB00B2F3B1 /* DetailView.swift in Sources */,
 				34FF5E49228C8E4500844296 /* TableViewCell.swift in Sources */,
 				34FF5E37228C859A00844296 /* ViewController.swift in Sources */,
-				34FF5E4B228C8EC300844296 /* User.swift in Sources */,
+				349C33F3228DFEE400B2F3B1 /* UIImageView+Download.swift in Sources */,
+				349C33F1228DFB0B00B2F3B1 /* Notification+Name.swift in Sources */,
 				34FF5E35228C859A00844296 /* AppDelegate.swift in Sources */,
+				349C33F9228E035300B2F3B1 /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

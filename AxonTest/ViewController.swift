@@ -18,6 +18,15 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         performSearch()
+        NotificationCenter.default.addObserver(self, selector: #selector(onDidReceiveData(_:)), name: .didReceiveData, object: nil)
+        
+    }
+    
+    @objc func onDidReceiveData(_ notification:Notification) {
+        DispatchQueue.main.async {
+            self.tableView.isHidden = false
+            self.tableView.reloadData()
+        }
     }
 
     func performSearch() {
@@ -31,15 +40,38 @@ class ViewController: UIViewController {
                 let dateFormatter = DateFormatter()
                 dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
                 decoder.dateDecodingStrategy = .formatted(dateFormatter)
-                guard let responseData = try? decoder.decode(RandomUserResponse.self, from: responseObject) else {
-                    let responseError = try? decoder.decode(String.self, from: responseObject)
-                    // present error popup
+                let responseData = try decoder.decode(ResponseEnum.self, from: responseObject)
+                switch responseData {
+                case .error(let err):
+                    print(err)
+                    // server error popup?
+                    return
+                case .data(let data):
+                    self.prepareViewModel(data.results)
+                    self.page += 1
                 }
-//                self.prepareViewModel(responseData.response)
-                self.page += 1
             } catch {
                 print("Decoding response error: \(error)")
             }
+        }
+    }
+    
+    func prepareViewModel(_ response: [Result]) {
+        if response.isEmpty{
+            DispatchQueue.main.async {
+                self.tableView.isHidden = true
+            }
+        }
+        for item in response {
+            let user = User.init(with: item)
+            users.append(user)
+        }
+        NotificationCenter.default.post(name: .didReceiveData, object: nil)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let vc = segue.destination as? DetailViewController, let info = sender as? User {
+            vc.userInfo = info
         }
     }
 }
@@ -50,11 +82,17 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        <#code#>
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as! TableViewCell
+        cell.avatarView.getImage(from: users[indexPath.row].smallImageUrl)
+        cell.nameLabel.text = users[indexPath.row].fullName
+        cell.ageLabel.text = users[indexPath.row].age
+        return cell
     }
     
-    
-    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let userDetails = users[indexPath.row]
+        performSegue(withIdentifier: "detailSegue", sender: userDetails)
+    }
 }
 
 extension ViewController: UITableViewDataSourcePrefetching {
