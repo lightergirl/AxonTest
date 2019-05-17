@@ -17,5 +17,5 @@ class DetailView: UIView {
     @IBOutlet weak var phoneLabel: UILabel!
     @IBOutlet weak var cellLabel: UILabel!
     @IBOutlet weak var emailLabel: UILabel!
-    @IBOutlet weak var cellButton: UIButton!
+    @IBOutlet weak var callButton: UIButton!
 }

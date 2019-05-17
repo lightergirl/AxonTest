@@ -23,35 +23,26 @@ class DetailViewController: UIViewController {
         detailView.avatarImageView.getImage(from: user.imageUrl)
         detailView.fullNameLabel.text = user.fullName
         detailView.genderLabel.text = user.gender
-        detailView.dobLabel.text = user.dob
-        detailView.phoneLabel.text = user.phone
-        detailView.emailLabel.text = user.email
-        detailView.cellLabel.text = user.cell
-        detailView.cellButton.addTarget(self, action: #selector(showActionSheet(controller:)), for: .touchUpInside)
+        detailView.dobLabel.text = "BirthDay: \(user.dob)"
+        detailView.phoneLabel.text = "Phone: \(user.phone)"
+        detailView.emailLabel.text = "E-mail: \(user.email)"
+        detailView.cellLabel.text = "Cell: \(user.cell)"
+        detailView.callButton.addTarget(self, action: #selector(showActionSheet(controller:)), for: .touchUpInside)
     }
-    
+
     @objc func showActionSheet(controller: UIViewController) {
-        let alert = UIAlertController(title: "Call", message: "Please Select the Number", preferredStyle: .actionSheet)
+        guard let user = userInfo else { return }
+        let alert = UIAlertController(title: "Call", message: "Please select the Number", preferredStyle: .actionSheet)
         alert.addAction(UIAlertAction(title: "Phone", style: .default, handler: { (_) in
-            self.makeCall(by: self.detailView.phoneLabel.text)
-            print("User click Phone button")
-        }))
-        
+            self.makeCall(by: user.phone) }))
         alert.addAction(UIAlertAction(title: "Cell", style: .default, handler: { (_) in
-            self.makeCall(by: self.detailView.cellLabel.text)
-            print("User click Cell button")
-        }))
-        
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (_) in
-            print("User click Cancel button")
-        }))
-        
+            self.makeCall(by: user.cell) }))
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (_) in }))
         self.present(alert, animated: true, completion: nil)
+        //FIXME: http://openradar.appspot.com/49289931
     }
     
-    private func makeCall(by stringNumber: String?) {
-        guard let phoneText = stringNumber else { return }
-        let number = phoneText.components(separatedBy: CharacterSet.decimalDigits.inverted).joined()
+    private func makeCall(by number: String) {
         guard let numberUrl = URL(string: "tel://\(number)") else { return }
         UIApplication.shared.open(numberUrl, options: [:], completionHandler: nil)
     }

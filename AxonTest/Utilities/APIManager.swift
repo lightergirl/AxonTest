@@ -16,7 +16,6 @@ class APIManager {
             print("Invalid URL in request")
             return
         }
-        
         let task = urlSession.dataTask(with: url) {data, response, error in
             guard error == nil else {
                 print ("get(): Server Error: \(String(describing: error))")

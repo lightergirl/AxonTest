@@ -29,7 +29,7 @@ class ViewController: UIViewController {
         }
     }
 
-    func performSearch() {
+    private func performSearch() {
         apiManager.request(.get(users: 20, from: page)) { responseObject, error in
             guard let responseObject = responseObject, error == nil else {
                 print(error ?? "Unknown error")
@@ -43,8 +43,7 @@ class ViewController: UIViewController {
                 let responseData = try decoder.decode(ResponseEnum.self, from: responseObject)
                 switch responseData {
                 case .error(let err):
-                    print(err)
-                    // server error popup?
+                    self.showErrorAlert(err)
                     return
                 case .data(let data):
                     self.prepareViewModel(data.results)
@@ -56,7 +55,13 @@ class ViewController: UIViewController {
         }
     }
     
-    func prepareViewModel(_ response: [Result]) {
+    private func showErrorAlert(_ message: String) {
+        let alert = UIAlertController(title: "Server error was occured :( Please reload this tiny app", message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { _ in }))
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    private func prepareViewModel(_ response: [Result]) {
         if response.isEmpty{
             DispatchQueue.main.async {
                 self.tableView.isHidden = true
@@ -85,7 +90,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as! TableViewCell
         cell.avatarView.getImage(from: users[indexPath.row].smallImageUrl)
         cell.nameLabel.text = users[indexPath.row].fullName
-        cell.ageLabel.text = users[indexPath.row].age
+        cell.ageLabel.text = "\(users[indexPath.row].age) years old"
         return cell
     }
     

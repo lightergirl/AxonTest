@@ -51,6 +51,51 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		349C33FC228F49FB00B2F3B1 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				34FF5E4C228C94AF00844296 /* RandomUserResponse.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		349C33FD228F4A1300B2F3B1 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				34FF5E38228C859A00844296 /* Main.storyboard */,
+				34FF5E48228C8E4500844296 /* TableViewCell.swift */,
+				349C33FA228E05FB00B2F3B1 /* DetailView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		349C33FE228F4A2C00B2F3B1 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				34FF5E36228C859A00844296 /* ViewController.swift */,
+				349C33F4228E01D300B2F3B1 /* DetailViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		349C33FF228F4A3C00B2F3B1 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				349C33F8228E035300B2F3B1 /* User.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		349C3400228F4A4B00B2F3B1 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				34FF5E46228C892000844296 /* APIManager.swift */,
+				349C33F0228DFB0B00B2F3B1 /* Notification+Name.swift */,
+				349C33F2228DFEE400B2F3B1 /* UIImageView+Download.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
 		34FF5E28228C859900844296 = {
 			isa = PBXGroup;
 			children = (
@@ -71,16 +116,11 @@
 			isa = PBXGroup;
 			children = (
 				34FF5E34228C859A00844296 /* AppDelegate.swift */,
-				34FF5E36228C859A00844296 /* ViewController.swift */,
-				349C33F4228E01D300B2F3B1 /* DetailViewController.swift */,
-				34FF5E46228C892000844296 /* APIManager.swift */,
-				34FF5E48228C8E4500844296 /* TableViewCell.swift */,
-				349C33FA228E05FB00B2F3B1 /* DetailView.swift */,
-				349C33F8228E035300B2F3B1 /* User.swift */,
-				34FF5E38228C859A00844296 /* Main.storyboard */,
-				34FF5E4C228C94AF00844296 /* RandomUserResponse.swift */,
-				349C33F0228DFB0B00B2F3B1 /* Notification+Name.swift */,
-				349C33F2228DFEE400B2F3B1 /* UIImageView+Download.swift */,
+				349C33FC228F49FB00B2F3B1 /* Model */,
+				349C33FD228F4A1300B2F3B1 /* View */,
+				349C33FF228F4A3C00B2F3B1 /* ViewModel */,
+				349C33FE228F4A2C00B2F3B1 /* Controller */,
+				349C3400228F4A4B00B2F3B1 /* Utilities */,
 				34FF5E3B228C859D00844296 /* Assets.xcassets */,
 				34FF5E3D228C859D00844296 /* LaunchScreen.storyboard */,
 				34FF5E40228C859E00844296 /* Info.plist */,

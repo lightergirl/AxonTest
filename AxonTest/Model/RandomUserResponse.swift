@@ -8,6 +8,34 @@
 
 import Foundation
 
+enum ResponseEnum: Codable {
+    case error(String)
+    case data(RandomUserResponse)
+    
+    init(from decoder: Decoder) throws {
+        let container = try decoder.singleValueContainer()
+        if let x = try? container.decode(String.self) {
+            self = .error(x)
+            return
+        }
+        if let x = try? container.decode(RandomUserResponse.self) {
+            self = .data(x)
+            return
+        }
+        throw DecodingError.typeMismatch(ResponseEnum.self, DecodingError.Context(codingPath: decoder.codingPath, debugDescription: "Wrong type for Response"))
+    }
+    
+    func encode(to encoder: Encoder) throws {
+        var container = encoder.singleValueContainer()
+        switch self {
+        case .error(let x):
+            try container.encode(x)
+        case .data(let x):
+            try container.encode(x)
+        }
+    }
+}
+
 struct RandomUserResponse: Codable {
     let results: [Result]
     let info: Info
@@ -89,34 +117,6 @@ struct Picture: Codable {
     let large: String
     let medium: String
     let thumbnail: String
-}
-
-enum ResponseEnum: Codable {
-    case error(String)
-    case data(RandomUserResponse)
-    
-    init(from decoder: Decoder) throws {
-        let container = try decoder.singleValueContainer()
-        if let x = try? container.decode(String.self) {
-            self = .error(x)
-            return
-        }
-        if let x = try? container.decode(RandomUserResponse.self) {
-            self = .data(x)
-            return
-        }
-        throw DecodingError.typeMismatch(ResponseEnum.self, DecodingError.Context(codingPath: decoder.codingPath, debugDescription: "Wrong type for Response"))
-    }
-    
-    func encode(to encoder: Encoder) throws {
-        var container = encoder.singleValueContainer()
-        switch self {
-        case .error(let x):
-            try container.encode(x)
-        case .data(let x):
-            try container.encode(x)
-        }
-    }
 }
 
 enum Postcode: Codable {
