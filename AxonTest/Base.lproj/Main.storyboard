@@ -198,9 +198,6 @@
                                         <integer key="value" value="10"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <action selector="makeCall:" destination="3TH-cv-XhP" eventType="touchUpInside" id="DN6-KX-Vna"/>
-                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -216,6 +213,7 @@
                         <viewLayoutGuide key="safeArea" id="hb9-xh-hXy"/>
                         <connections>
                             <outlet property="avatarImageView" destination="s8Z-PM-M9l" id="nQN-1d-Ofa"/>
+                            <outlet property="cellButton" destination="UaG-O8-hs7" id="gLj-1m-Djv"/>
                             <outlet property="cellLabel" destination="A3s-1l-ivV" id="iBu-XO-ZQk"/>
                             <outlet property="dobLabel" destination="xK6-03-bcb" id="3Wg-CI-ckz"/>
                             <outlet property="emailLabel" destination="YCf-jh-M9d" id="QvP-Zm-YQg"/>
@@ -224,6 +222,9 @@
                             <outlet property="phoneLabel" destination="bSe-sg-Siy" id="1zM-4y-n2J"/>
                         </connections>
                     </view>
+                    <connections>
+                        <outlet property="detailView" destination="3TH-cv-XhP" id="5lN-kf-rlj"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Dkw-Zm-lkn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

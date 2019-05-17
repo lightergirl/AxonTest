@@ -92,6 +92,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let userDetails = users[indexPath.row]
         performSegue(withIdentifier: "detailSegue", sender: userDetails)
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 }
 

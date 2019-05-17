@@ -17,13 +17,5 @@ class DetailView: UIView {
     @IBOutlet weak var phoneLabel: UILabel!
     @IBOutlet weak var cellLabel: UILabel!
     @IBOutlet weak var emailLabel: UILabel!
-    
-    @IBAction func makeCall(_ sender: Any) {
-        // add choice
-        guard let phoneText = phoneLabel.text else { return }
-        let number = phoneText.components(separatedBy: CharacterSet.decimalDigits.inverted).joined()
-        guard let numberUrl = URL(string: "tel://\(number)") else { return }
-        UIApplication.shared.open(numberUrl)
-
-    }
+    @IBOutlet weak var cellButton: UIButton!
 }
